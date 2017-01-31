@@ -10,10 +10,10 @@ namespace CorePieShop.Controllers
 {
     public class OrderControllercs : Controller
     {
-        private readonly IOrderRepository _orderRepository;
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //private readonly IOrderRepository _orderRepository;
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
     }
 }
