@@ -65,9 +65,22 @@ namespace CorePieShop
             app.UseStaticFiles();
             app.UseSession();
 
-            app.UseMvcWithDefaultRoute();
+            //app.UseMvcWithDefaultRoute();
 
-            DbInitializer.Seed(app);
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "categoryfilter",
+                    template: "Pie/{action}/{category}",
+                    defaults: new { Controller = "Pie", action = "List" }
+                );
+
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            //DbInitializer.Seed(app);
         }
     }
 }
