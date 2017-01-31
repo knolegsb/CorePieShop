@@ -38,6 +38,9 @@ namespace CorePieShop
             services.AddTransient<ICategoryRepository, CategoryRepository>();
 
             services.AddMvc();
+
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +61,8 @@ namespace CorePieShop
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseSession();
+
             app.UseMvcWithDefaultRoute();
 
             DbInitializer.Seed(app);
