@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using CorePieShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace CorePieShop
 {
@@ -33,6 +34,9 @@ namespace CorePieShop
 
             //services.AddTransient<ICategoryRepository, MockCategoryRepository>();
             //services.AddTransient<IPieRepository, MockPieRepository>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<AppDbContext>();
 
             services.AddTransient<IPieRepository, PieRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
@@ -65,6 +69,7 @@ namespace CorePieShop
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
+            app.UseIdentity();
 
             //app.UseMvcWithDefaultRoute();
 
