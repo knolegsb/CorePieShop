@@ -38,6 +38,7 @@ namespace CorePieShop
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+            services.AddTransient<IOrderRepository, OrderRepository>();
 
             services.AddMvc();
 
@@ -71,7 +72,7 @@ namespace CorePieShop
             {
                 routes.MapRoute(
                     name: "categoryfilter",
-                    template: "Pie/{action}/{category}",
+                    template: "Pie/{action}/{category?}",
                     defaults: new { Controller = "Pie", action = "List" }
                 );
 
